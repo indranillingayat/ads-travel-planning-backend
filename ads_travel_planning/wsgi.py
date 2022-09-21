@@ -1,5 +1,5 @@
 """
-WSGI config for ads_travel_planning_be project.
+WSGI config for ads_travel_planning project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
@@ -11,6 +11,6 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'ads_travel_planning_be.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'ads_travel_planning.settings')
 
 application = get_wsgi_application()

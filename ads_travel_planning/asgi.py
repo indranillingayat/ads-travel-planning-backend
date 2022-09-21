@@ -1,5 +1,5 @@
 """
-ASGI config for ads_travel_planning_be project.
+ASGI config for ads_travel_planning project.
 
 It exposes the ASGI callable as a module-level variable named ``application``.
 
@@ -11,6 +11,6 @@ import os
 
 from django.core.asgi import get_asgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'ads_travel_planning_be.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'ads_travel_planning.settings')
 
 application = get_asgi_application()

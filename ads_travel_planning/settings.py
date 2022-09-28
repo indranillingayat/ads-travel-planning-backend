@@ -1,20 +1,21 @@
 import os
 
+from ads_travel_planning.app_settings import get_app_settings
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
+app_settings = get_app_settings()
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '!=hjmc^)_==7jsxinq4!7^)9vv^qy9@p5co&bi6yakk=18nrqx'
+SECRET_KEY = app_settings.secret_key
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = app_settings.debug
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = app_settings.allowed_hosts
 
 # Application definition
 
@@ -63,17 +64,19 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'ads_travel_planning.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': app_settings.db_name,
+        'USER': app_settings.db_user,
+        'PASSWORD': app_settings.db_password,
+        'HOST': app_settings.db_host,
+        'PORT': app_settings.db_port
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
@@ -93,7 +96,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 
@@ -106,7 +108,6 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/

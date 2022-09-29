@@ -30,8 +30,11 @@ INSTALLED_APPS = [
 
     # external apps
     'rest_framework',
+    'rest_framework.authtoken',
 
     # travel planner apps
+    'testapi',
+    'users'
 ]
 
 MIDDLEWARE = [
@@ -42,6 +45,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'ads_travel_planning.middleware.AppMiddleware'
 ]
 
 ROOT_URLCONF = 'ads_travel_planning.urls'

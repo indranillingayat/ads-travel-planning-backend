@@ -33,6 +33,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
 
     # travel planner apps
+    'healthcheck',
     'testapi',
     'users'
 ]

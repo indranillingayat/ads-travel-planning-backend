@@ -1,7 +1,5 @@
-from rest_framework.decorators import api_view
-from rest_framework.response import Response
+from django.http import HttpResponse
 
 
-@api_view(http_method_names=('get', 'post'))
 def health_check(req):
-    return Response({"ok": "true"},)
+    return HttpResponse("ok")

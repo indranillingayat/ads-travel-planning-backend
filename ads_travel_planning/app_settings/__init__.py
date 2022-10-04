@@ -1,9 +1,7 @@
 def get_app_settings():
-    from environs import Env
-    env = Env()
-    env.read_env()
+    import os
 
-    mode = env.str('MODE', 'dev')
+    mode = os.environ.get('MODE', 'dev')
 
     if mode == 'dev':
         from .dev import AppSettings
@@ -17,4 +15,4 @@ def get_app_settings():
     else:
         raise Exception("Invalid configurations, please set proper app run mode")
 
-    return AppSettings(env)
+    return AppSettings()

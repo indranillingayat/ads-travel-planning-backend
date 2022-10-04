@@ -1,4 +1,4 @@
-from typing import Any
+import os
 
 
 class BaseSettings:
@@ -7,22 +7,19 @@ class BaseSettings:
     db_host = ''
     db_port = ''
 
-    def __init__(self, env: Any):
-        self.env = env
-
     @property
     def secret_key(self):
-        return self.env.str('SECRET_KEY', '')
+        return os.environ.get('SECRET_KEY', 'junk')
 
     @property
     def db_name(self):
-        return self.env.str('DB_NAME', '')
+        return os.environ.get('DB_NAME', '')
 
     @property
     def db_user(self):
-        return self.env.str('DB_USER', '')
+        return os.environ.get('DB_USER', '')
 
     @property
     def db_password(self):
-        return self.env.str('DB_PASSWORD', '')
+        return os.environ.get('DB_PASSWORD', '')
 

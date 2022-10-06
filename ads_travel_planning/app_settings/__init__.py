@@ -1,7 +1,7 @@
 def get_app_settings():
     import os
 
-    mode = os.environ.get('MODE', 'dev')
+    mode = os.environ.get('MODE', 'dev').strip()
 
     if mode == 'dev':
         from .dev import AppSettings

@@ -7,4 +7,3 @@ class AppSettings(Singleton, BaseSettings):
     db_port = 5432
     allowed_hosts = ['adstravelplannerstaging-env.eba-fpbsp8bs.us-east-1.elasticbeanstalk.com',
                      'staging-travel-planner.adsba-test.com']
-    logging_enabled = False

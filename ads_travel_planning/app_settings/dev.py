@@ -3,7 +3,7 @@ from utils.singleton import Singleton
 
 
 class AppSettings(Singleton, BaseSettings):
-    allowed_hosts = list()
-    debug = True
+    allowed_hosts = ['127.0.0.1']
+    debug = False
     db_host = 'ads-test-database.c13lsk8zdesp.us-east-1.rds.amazonaws.com'
     db_port = 5432

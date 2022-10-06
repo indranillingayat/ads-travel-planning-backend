@@ -83,24 +83,26 @@ DATABASES = {
     }
 }
 
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'handlers': {
-        'file': {
-            'level': 'DEBUG',
-            'class': 'logging.FileHandler',
-            'filename': '/var/log/app-logs/django.log',
+if app_settings.logging_enabled:
+    os.makedirs(app_settings.log_path, exist_ok=True)
+    LOGGING = {
+        'version': 1,
+        'disable_existing_loggers': False,
+        'handlers': {
+            'file': {
+                'level': app_settings.log_level,
+                'class': 'logging.FileHandler',
+                'filename': f"{app_settings.log_path}/django.log",
+            },
         },
-    },
-    'loggers': {
-        'django': {
-            'handlers': ['file'],
-            'level': 'DEBUG',
-            'propagate': True,
+        'loggers': {
+            'django': {
+                'handlers': ['file'],
+                'level': app_settings.log_level,
+                'propagate': True,
+            },
         },
-    },
-}
+    }
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators

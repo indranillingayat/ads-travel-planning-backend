@@ -7,6 +7,11 @@ class BaseSettings:
     db_host = ''
     db_port = ''
 
+    # Logging section
+    logging_enabled = True
+    log_level = "INFO"
+    log_path = "/var/log/app-logs"
+
     @property
     def secret_key(self):
         return os.environ.get('SECRET_KEY', 'junk')

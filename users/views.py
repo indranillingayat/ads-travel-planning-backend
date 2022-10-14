@@ -1,7 +1,12 @@
-from django.shortcuts import render
+from django.contrib.auth.models import User
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.authtoken.models import Token
+from rest_framework.decorators import action
 from rest_framework.response import Response
+from rest_framework.viewsets import ModelViewSet
+
+from users.serializers import UserSerializer
+from utils.views.viewset import AppViewProvider
 
 
 # Create your views here.
@@ -16,3 +21,12 @@ class CustomObtainAuthToken(ObtainAuthToken):
         token, created = Token.objects.get_or_create(user=user)
         return Response({'token': token.key})
 
+
+class UserViewSet(AppViewProvider, ModelViewSet):
+    serializer_class = UserSerializer
+    queryset = User.objects.all()
+
+    @action(methods=['get'], detail=False)
+    def current_user(self, request):
+        current_user = request.user
+        return Response(UserSerializer(current_user).data)

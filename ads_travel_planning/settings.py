@@ -1,5 +1,4 @@
 import os
-import mimetypes
 
 from ads_travel_planning.app_settings import get_app_settings
 
@@ -141,4 +140,3 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = '/var/app/static/'
-mimetypes.add_type("text/css", ".css", True)

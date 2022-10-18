@@ -6,6 +6,7 @@ from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
 
 from users.serializers import UserSerializer
+from users.utils import get_allowed_user_actions
 from utils.views.viewset import AppViewProvider
 
 
@@ -29,4 +30,9 @@ class UserViewSet(AppViewProvider, ModelViewSet):
     @action(methods=['get'], detail=False)
     def current_user(self, request):
         current_user = request.user
-        return Response(UserSerializer(current_user).data)
+        available_actions = get_allowed_user_actions(request.user)
+        res = {
+            'user': UserSerializer(current_user).data,
+            'actions': available_actions
+        }
+        return Response(res)

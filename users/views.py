@@ -1,10 +1,10 @@
-from django.contrib.auth.models import User
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.authtoken.models import Token
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
 
+from users.models import User
 from users.serializers import UserSerializer
 from users.utils import get_allowed_user_actions
 from utils.views.viewset import AppViewProvider

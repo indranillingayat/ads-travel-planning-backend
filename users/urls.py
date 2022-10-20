@@ -8,6 +8,6 @@ urlpatterns = [
 ]
 
 router = DefaultRouter()
-router.register('', UserViewSet)
+router.register('', UserViewSet, basename='UserViewSet')
 
 urlpatterns.extend(router.urls)

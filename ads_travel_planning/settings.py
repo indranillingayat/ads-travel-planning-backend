@@ -34,7 +34,8 @@ INSTALLED_APPS = [
 
     # travel planner apps
     'users',
-    'accounts'
+    'accounts',
+    'trips'
 ]
 
 MIDDLEWARE = [

@@ -19,5 +19,13 @@ class Trip(UUIDPKAbstractModel):
 
 class TripVisit(UUIDPKAbstractModel):
     note = models.TextField()
-    trip_date = models.DateField()
-
+    visit_date = models.DateField()
+    share_with_ads = models.BooleanField(default=False)
+    share_externally = models.BooleanField(default=False)
+    ads_participants = models.ManyToManyField(User, related_name='ads_visits')
+    external_participants = models.ManyToManyField(User, related_name='external_visits')
+    account_snapshot = models.JSONField(null=True, blank=True)
+    visit_account = models.ForeignKey('accounts.Account', null=True, on_delete=models.SET_NULL)
+    trip = models.ForeignKey(Trip, on_delete=models.CASCADE)
+    start_time = models.TimeField()
+    end_time = models.TimeField()

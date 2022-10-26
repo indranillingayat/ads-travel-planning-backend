@@ -5,6 +5,7 @@ from django.db import models
 from django.core.validators import validate_email
 
 from users.manager import CustomUserManager
+from users.permissions import CUSTOM_PERMISSIONS
 from utils.base_model import UUIDPKAbstractModel
 
 
@@ -29,13 +30,4 @@ class User(UUIDPKAbstractModel, AbstractUser):
     email = None
 
     class Meta:
-        permissions = [
-            ('c_create_trip', 'Can create new trip'),
-            ('c_list_trip', 'Can list the created trips'),
-            ('c_manage_team', 'Can manage team trips'),
-            ('c_participated_trips', 'Can view participated trips'),
-            ('c_create_trip_request', 'Can create trip requests'),
-            ('c_manage_trip_request', 'Can manage trip requests'),
-            ('c_access_ads_shared_trips', 'Can view all the shared with ADS trips'),
-            ('c_access_external_shared_trips', 'Can view all the trips shared externally')
-        ]
+        permissions = list(CUSTOM_PERMISSIONS.values())

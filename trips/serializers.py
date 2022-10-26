@@ -1,4 +1,5 @@
 from rest_framework import serializers
+from rest_framework.permissions import SAFE_METHODS
 
 from trips.models import Trip, TripVisit
 from users.serializers import UserMinInfoSerializer

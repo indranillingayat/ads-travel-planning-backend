@@ -7,4 +7,4 @@ class AccountMinSerializer(ModelSerializer):
 
     class Meta:
         fields = ('account_guid', 'account_name')
-        models = Account
+        model = Account

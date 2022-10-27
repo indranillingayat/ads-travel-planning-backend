@@ -4,7 +4,7 @@ from django.db import models
 
 
 class Account(models.Model):
-    account_guid = models.UUIDField(primary_key=True, default=uuid.uuid4)
+    account_guid = models.CharField(max_length=255, primary_key=True)
     account_owner = models.CharField(max_length=255)
     department_name = models.CharField(max_length=255)
     account_name = models.CharField(max_length=255)

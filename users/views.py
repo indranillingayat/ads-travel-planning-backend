@@ -2,10 +2,11 @@ from django.contrib.auth import authenticate, get_user_model
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.authtoken.models import Token
 from rest_framework.decorators import action
+from rest_framework.generics import ListAPIView
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
 
-from users.serializers import UserSerializer
+from users.serializers import UserSerializer, UserMinInfoSerializer
 from users.utils import get_allowed_user_actions
 from utils.views.viewset import AppViewProvider
 
@@ -25,6 +26,7 @@ class CustomObtainAuthToken(ObtainAuthToken):
 
 class UserViewSet(AppViewProvider, ModelViewSet):
     serializer_class = UserSerializer
+    search_fields = ('first_name', 'last_name', 'username')
 
     def get_queryset(self):
         return User.objects.none()
@@ -38,3 +40,7 @@ class UserViewSet(AppViewProvider, ModelViewSet):
             'actions': available_actions
         }
         return Response(res)
+
+    @action(methods=['get'], detail=False)
+    def list_users(self, request, *args, **kwargs):
+        return self.custom_list(UserMinInfoSerializer, User.objects.all())

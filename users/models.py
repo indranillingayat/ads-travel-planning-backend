@@ -7,6 +7,7 @@ from django.core.validators import validate_email
 from users.manager import CustomUserManager
 from users.permissions import CUSTOM_PERMISSIONS
 from utils.base_model import UUIDPKAbstractModel
+from utils.constants import USER_TYPES_LIST
 
 
 class User(UUIDPKAbstractModel, AbstractUser):
@@ -23,6 +24,7 @@ class User(UUIDPKAbstractModel, AbstractUser):
             'unique': _("A user with that username already exists."),
         },
     )
+    user_type = models.IntegerField(choices=USER_TYPES_LIST, null=True)
 
     objects = CustomUserManager()
 

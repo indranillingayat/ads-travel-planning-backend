@@ -27,6 +27,7 @@ class CustomObtainAuthToken(ObtainAuthToken):
 class UserViewSet(AppViewProvider, ModelViewSet):
     serializer_class = UserSerializer
     search_fields = ('first_name', 'last_name', 'username')
+    filterset_fields = ('user_type', )
 
     def get_queryset(self):
         return User.objects.none()
@@ -42,5 +43,5 @@ class UserViewSet(AppViewProvider, ModelViewSet):
         return Response(res)
 
     @action(methods=['get'], detail=False)
-    def list_users(self, request, *args, **kwargs):
+    def list_users(self, request):
         return self.custom_list(UserMinInfoSerializer, User.objects.all())

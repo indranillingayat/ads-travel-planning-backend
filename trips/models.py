@@ -16,6 +16,9 @@ class Trip(UUIDPKAbstractModel):
     updated_at = models.DateTimeField(auto_now=True)
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return self.trip_name
+
 
 class TripVisit(UUIDPKAbstractModel):
     note = models.TextField()
@@ -29,3 +32,6 @@ class TripVisit(UUIDPKAbstractModel):
     trip = models.ForeignKey(Trip, on_delete=models.CASCADE)
     start_time = models.TimeField()
     end_time = models.TimeField()
+
+    def __str__(self):
+        return f"{self.trip} - {self.note}"

@@ -19,3 +19,6 @@ class Account(models.Model):
     last_activity = models.CharField(max_length=255)
     address = models.CharField(max_length=4000)
     as_of_date = models.DateField(auto_now_add=True)
+
+    def __str__(self):
+        return self.account_name

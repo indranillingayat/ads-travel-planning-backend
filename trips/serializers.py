@@ -16,11 +16,33 @@ class TripSerializer(serializers.ModelSerializer):
         read_only_fields = ('id', 'owner')
 
 
+class TripBasicSerializer(serializers.ModelSerializer):
+    owner = serializers.StringRelatedField()
+
+    class Meta:
+        model = Trip
+        fields = ('id', 'trip_name', 'owner')
+
+
 class TripVisitSerializer(serializers.ModelSerializer):
     class Meta:
         model = TripVisit
         fields = '__all__'
         read_only_fields = ('id', 'account_snapshot')
+
+
+class TripVisitListSerializer(serializers.ModelSerializer):
+    trip = TripBasicSerializer()
+    participants = serializers.SerializerMethodField()
+    visit_account = serializers.StringRelatedField()
+
+    def get_participants(self, instance: TripVisit):
+        all_participants = instance.ads_participants.all() | instance.external_participants.all()
+        return UserMinInfoSerializer(instance=all_participants, many=True).data
+
+    class Meta:
+        model = TripVisit
+        fields = ('trip', 'visit_account', 'visit_date', 'participants')
 
 
 class EmbeddedTripVisitSerializer(serializers.ModelSerializer):

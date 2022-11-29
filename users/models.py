@@ -33,3 +33,6 @@ class User(UUIDPKAbstractModel, AbstractUser):
 
     class Meta:
         permissions = list(CUSTOM_PERMISSIONS.values())
+
+    def __str__(self):
+        return f"{self.first_name} {self.last_name}"
